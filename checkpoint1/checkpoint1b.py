@@ -13,7 +13,7 @@ you can import this file and its functions directly:
     - python terminal: run `from importlib import reload` and `import preprocess`
                        each time you modify this file, run `reload(preprocess)`
 
-Once you are finished with this program, you should run `python preprocess.py` from the terminal.
+Once you are finished with this program, you should run `python checkpoint1b.py` from the terminal.
 This should load the data, perform preprocessing, and save the output to the data folder.
 
 """
@@ -37,6 +37,9 @@ def fix_caffeine(df):
 def standardize_names(df):
     df = df.rename(columns = lambda x: str.lower(x))
     df = df.rename(columns = lambda x: re.sub("\(.*\)","",x))
+    
+    #Remove leading and trailing spaces
+    df.columns = df.columns.str.strip()
     return df
 
 def fix_strings(df, col):
